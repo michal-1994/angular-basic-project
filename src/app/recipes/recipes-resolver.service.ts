@@ -11,18 +11,18 @@ import { RecipeService } from './recipe.service';
 
 @Injectable({ providedIn: 'root' })
 export class RecipesResolverService implements Resolve<Recipe[]> {
-    constructor(
-        private dataStorageService: DataStorageService,
-        private recipesService: RecipeService
-    ) {}
+  constructor(
+    private dataStorageService: DataStorageService,
+    private recipesService: RecipeService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const recipes = this.recipesService.getRecipes();
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const recipes = this.recipesService.getRecipes();
 
-        if (recipes.length === 0) {
-            return this.dataStorageService.fetchRecipes();
-        } else {
-            return recipes;
-        }
+    if (recipes.length === 0) {
+      return this.dataStorageService.fetchRecipes();
+    } else {
+      return recipes;
     }
+  }
 }
